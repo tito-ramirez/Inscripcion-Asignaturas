@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+    <title>Solitude - Solicitud por tope</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="https://getbootstrap.com/docs/4.4/examples/dashboard/dashboard.css" rel="stylesheet">
+    <style>form li + li {
+      margin-top: 1em;
+      } </style>
+
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-warning flex-md-nowrap p-0">
+      
+      <a class="bg-success col-sm-3 col-md-2 mr-0"></a>
+      <h1 class="bold" style=> <center></center></div> </h1>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          {% if nombre %}
+          <a class="nav-link" href="/accounts/profile/logout_view" style="color:black;">Bienvenido {{ nombre.0.0 }} {{ nombre.0.1 }} (Cerrar sesion)</a>
+          {% else %}
+          <a class="nav-link" href="/accounts/profile/logout_view" style="color:black;">Bienvenido {{ datos.0.Est_Nom }} {{ datos.0.Est_Ap }} (Cerrar sesion)</a>
+          {% endif %}
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class='col-md-1'></div>
+
+        <main role="main" class="col-md-10">
+      
+          {% if nombrecln %}
+	          <div class="alert alert-success" role="alert">
+				  El usuario {{ nombrecln }} {{ paternocln }} ha sido creado exitosamente con nombre de usuario: {{ rutcln }} y contraseña: {{ clavecln }}
+				</div>
+        
+          {% endif %}
+
+
+          <!--<canvas class="my-4" id="myChart" width="900" height="380"></canvas>-->
+
+
+
+
+          <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-sm-4"></div>
+                  <div class="col-sm-4">
+                    
+                                      <div class="card">
+                    <div class="card-body">
+                      <div align="center"><img src="https://i.ibb.co/hygQ15f/logo.jpg" width="50%" height="27%"></div>
+                    </div>
+                  </div>
+
+
+                  </div>
+                  <div class="col-sm-4"></div>
+              </div>
+              </div>
+            </div>
+
+          <div class="container">
+             
+              
+          {% if error %}
+            <div class="alert alert-danger" role="alert">
+          Porfavor verificar si todos los datos han sido ingresados correctamente
+        </div>
+        
+    {% endif %}
+      <form action="/crearsolitope" method="get">
+                <ul>
+
+                <div class="card">
+				  <div class="card-body">
+				    <div class="container">
+					    <div class="row">
+					        <div class="col-sm-3">
+					        	<li>
+				                	<label for="name">Nombre:</label>
+				                 	<input type="text" id="name" name="user_name" value="{{ datos.0.Est_Nom }}" readonly="true"> 
+				                </li>
+					        </div>
+					        <div class="col-sm-3">
+					        	<li>
+				                    <label for="name">Apellido:</label>
+				                    <input type="text" id="name" name="user_apellido" value="{{ datos.0.Est_Ap }}" readonly="true">
+				                </li>
+					        </div>
+					        <div class="col-sm-3">
+					        	<li>
+				                    <label for="name">Teléfono:</label>
+				                    <input type="text" id="name" name="user_telefono" value="{{ datos.0.Est_Tel }}" readonly="true">
+				                </li>
+					        </div>
+					        <div class="col-sm-3">
+					        	<li>
+				                    <label for="name">Rut:</label>
+				                    <input type="text" id="name" name="user_rut" value="{{ datos.0.Est_Rut }}" readonly="true">
+				                </li>
+					        </div>
+					    </div>
+					</div>
+				  </div>
+				</div>	
+				<div class="card">
+				  <div class="card-body">
+				    <div class="container">
+					    <div class="row">
+					        <div class="col-sm-1"></div>
+					        <div class="col-sm-4">
+					        	<li>
+				                	<label for="mail">Correo electrónico:</label>
+				                	<input type="email" id="mail" name="user_mail" value="{{ datos.0.Est_Email }}" readonly="true">
+				                </li>
+					        </div>
+					        <div class="col-sm-3">
+					        	<li>
+				                    <label for="name">Malla</label>
+				                    <input type="text" id="name" name="user_malla" value="{{ datos.0.Est_Carr_codigo.carr_codigo }}" readonly="true">
+				                </li>
+					        </div>
+					        <div class="col-sm-4">
+					        	<li>
+				                    <label for="name">Semestre</label>
+				                    <input type="text" id="name" name="user_semestre" value="{{ semestre }}" readonly="true">
+				                </li>
+					        </div>
+					    </div>
+					</div>
+				  </div>
+				</div>
+				<div class="card">
+				  <div class="card-body">
+				    <div class="container">
+					    <div class="row">
+					        <div class="col-sm-4">
+					        	<li>
+					        	<label for="name">Asignatura a Inscribir</label>
+					        	<select class="custom-select mr-sm-2" name="IdAsIns"id="inlineFormCustomSelect">
+							        {% for dato in datos2 %}
+							           <option value="{{ dato.Asig_cod }}">{{ dato.Asig_nombre}}</option>     
+							        }
+							        }
+							        {% endfor %}
+							       
+							    </select>
+							    </li>
+					        </div>
+					        <div class="col-sm-4">
+					        	<li>
+					        	<label for="name">Asignatura Tope</label> 
+					        	<select class="custom-select mr-sm-2" name="IdAsTope"id="inlineFormCustomSelect">
+							        {% for dato in datos2 %}
+							           <option value="{{ dato.Asig_cod }}">{{ dato.Asig_nombre}}</option>     
+							        }
+							        }
+							        {% endfor %}
+							       
+							    </select>
+							    </li>			                   
+				                
+					        </div>
+					        <div class="col-sm-4">
+					        	<li>
+				                	<label for="name">Motivo:</label>
+				                	
+				                </li>
+				                <textarea id="msg" name="Motivo"></textarea>
+					        </div>
+					    </div>
+					</div>
+				  </div>
+				</div>
+				<div class="card">
+				  <div class="card-body">
+				    <div class="container">
+				    <div class="row">
+				        <div class="col-sm-4"></div>
+				        <div class="col-sm-2">
+				        	
+			                    <a href="accounts/profile/ " class="btn btn-warning">Salir</a>
+			            
+				        </div>
+				        <div class="col-sm-2">
+				        	
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#exampleModal">
+					  Enviar
+					</button>
+
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Confirmar emisión</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					        Confirma emisión de Solicitud
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-secondary" data-dismiss="modal">No enviar</button>
+							<button type="submit" class="btn btn-warning" >Enviar</button>
+					      </div>
+					    </div>
+					  </div>
+					</div>
+
+             
+				        </div>
+				        
+				        <div class="col-sm-4"></div>
+				    </div>
+					</div>
+				  </div>
+				</div>
+     
+                </ul>
+                
+            </form>
+
+
+          <!-- <h2 style="font-family:sans-serif;color:black;" >Historial de mantenciones</h2>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Fecha de inicio</th>
+                  <th>Fecha de finalizacion</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Estado</th>
+                  <th>Descripcion</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for dato in datos %}
+                <tr>
+                  <td>{{ dato.0 }}</td>
+                  <td>{{ dato.1 }}</td>
+                  <td>{{ dato.2 }}</td>
+                  <td>{{ dato.3 }}</td>
+                  <td>{{ dato.5 }}</td>
+                  <td>{{ dato.6 }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div> -->
+
+           <!-- Button trigger modal -->
+
+
+<!-- Modal -->
+
+
+
+        </main>
+        <div class='col-md-1'></div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <!-- Graphs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  </body>
+</html>
